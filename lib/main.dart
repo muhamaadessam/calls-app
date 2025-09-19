@@ -154,13 +154,13 @@ void main() => runApp(const MyApp());
 // Fill in the app ID obtained from Agora Console
 const appId = "d60cd61a9b1c4761b5edd30ff506d562";
 // Fill in the temporary token generated from Agora Console
-const token = "<-- Insert token -->";
+const token = "007eJxTYHDLv7v02ROXq8ZVJh9t50/vjiufFWci9vhb5YVbQU6xqqkKDClmBskpZoaJlkmGySbmZoZJpqkpKcYGaWmmBmYppmZGAVlnMhoCGRl47tgxMEIhiM/CEJJaXMLAAACiciAC";
 // Fill in the channel name you used to generate the token
 const channel = "Test";
 
 // Main App Widget
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +172,7 @@ class MyApp extends StatelessWidget {
 
 // Voice call Screen Widget
 class _MainScreen extends StatefulWidget {
-  const _MainScreen({Key? key}) : super(key: key);
+  const _MainScreen({super.key});
 
   @override
   _MainScreenScreenState createState() => _MainScreenScreenState();
