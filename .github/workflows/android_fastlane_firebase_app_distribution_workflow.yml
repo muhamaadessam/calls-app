@@ -26,13 +26,13 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.4.5"
+          ruby-version: "3.3.0"
           bundler-cache: true
           working-directory: android
 
-      - name: Add Linux platform to Gemfile.lock
-        run: bundle lock --add-platform x86_64-linux
-        working-directory: android
+#      - name: Add Linux platform to Gemfile.lock
+#        run: bundle lock --add-platform x86_64-linux
+#        working-directory: android
 
       - name: Build and Distribute App
         env:
