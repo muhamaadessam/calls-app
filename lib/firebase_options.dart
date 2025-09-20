@@ -60,4 +60,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'calls-app-bb59c.firebasestorage.app',
     iosBundleId: 'com.test.callsapp',
   );
+
 }

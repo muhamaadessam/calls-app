@@ -145,11 +145,29 @@
 // }
 
 import 'dart:async';
+import 'dart:ui';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+
+  // Pass all uncaught "fatal" errors from the framework to Crashlytics
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+  runApp(const MyApp());
+}
 
 // Fill in the app ID obtained from Agora Console
 const appId = "d60cd61a9b1c4761b5edd30ff506d562";
@@ -267,13 +285,21 @@ class _MainScreenScreenState extends State<_MainScreen> {
         appBar: AppBar(
           title: const Text('Agora Voice Call'),
         ),
-        body: Center(
-          child: Text(
-            _remoteUid != null
-                ? "Remote user $_remoteUid joined"
-                : "No remote user in the channel", // Show appropriate message
-            style: const TextStyle(fontSize: 18),
-          ),
+        body: Column(
+          children: [
+            Center(
+              child: Text(
+                _remoteUid != null
+                    ? "Remote user $_remoteUid joined"
+                    : "No remote user in the channel", // Show appropriate message
+                style: const TextStyle(fontSize: 18),
+              ),
+            ),
+            TextButton(
+              onPressed: () => throw Exception(),
+              child: const Text("Throw Test Exception"),
+            ),
+          ],
         ),
       ),
     );
