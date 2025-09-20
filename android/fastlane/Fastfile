@@ -14,7 +14,7 @@ platform :android do
         firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
         android_artifact_type: "APK",
         android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
-        testers: "mohamed1592000m@gmail.com",
+        testers: "mohamed1592000m@gmail.com, amaz82325@gmail.com",
         release_notes: "Testing something with GitHub Actions, trying to push directly from master branch",
   )
   end
