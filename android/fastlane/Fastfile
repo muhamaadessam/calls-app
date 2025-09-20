@@ -8,7 +8,7 @@ platform :android do
   desc "Lane for Android Firebase App Distribution"
   lane :firebase_distribution do
     increment_version_code(
-      gradle_file_path: "app/build.gradle"
+      gradle_file_path: "app/build.gradle.kts"
     )
     sh "flutter clean"
     sh "flutter build apk --release --no-tree-shake-icons"
